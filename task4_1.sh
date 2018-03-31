@@ -49,8 +49,7 @@ echo -ne `sudo dumpe2fs $(mount | grep 'on \/ ' | awk '{print $1}') 2>&1 | grep 
 echo -n "Hostname: " >> ${OUTPUT_FILE}
 echo -ne `hostname -f`"\n" >> ${OUTPUT_FILE}
 # Uptime
-#echo -ne "Uptime: $((`cat /proc/uptime|awk '{print $1}' | sed 's/...$//g'`/86400)) days\n" >> ${OUTPUT_FILE}
-echo -ne "Uptime: `cat /proc/uptime | awk '{print $1}' | uptime -p | sed 's/up //g'`""\n" >> ${OUTPUT_FILE}
+echo -ne "Uptime: `uptime -p | sed 's/up //g'`\n" >> ${OUTPUT_FILE}
 # Processes running
 echo -n "Processes running: " >> ${OUTPUT_FILE}
 echo -ne $((`ps -auxh | wc -l`))"\n" >> ${OUTPUT_FILE}
